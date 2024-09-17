@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items in <%= category.name %></title>
+</head>
+<body>
+    <h1>Items in <%= category.name %></h1>
+    <ul>
+        <% items.forEach(item => { %>
+            <li>
+                <strong>Name:</strong> <%= item.name %> <br>
+                <strong>Description:</strong> <%= item.description %> <br>
+                <strong>Price:</strong> $<%= item.price %> <br>
+                <strong>Quantity:</strong> <%= item.quantity %> <br>
+            </li>
+        <% }) %>
+    </ul>
+    <a href="/categories">Back to Categories</a>
+</body>
+</html>
