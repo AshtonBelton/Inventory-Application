@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= category ? 'Edit' : 'Create' %> Category</title>
+</head>
+<body>
+    <h1><%= category ? 'Edit' : 'Create' %> Category</h1>
+    <form action="<%= category ? '/categories/' + category.id + '?_method=PUT' : '/categories' %>" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" value="<%= category ? category.name : '' %>" required>
+        <br>
+        <label for="description">Description:</label>
+        <textarea name="description" id="description" required><%= category ? category.description : '' %></textarea>
+        <br>
+        <button type="submit"><%= category ? 'Update' : 'Create' %></button>
+    </form>
+    <a href="/categories">Back to Categories</a>
+</body>
+</html>
