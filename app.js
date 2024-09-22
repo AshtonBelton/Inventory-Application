@@ -80,6 +80,33 @@ app.put('/items/:id', async (req, res) => {
     }
 });
 
+// Delete Category and Disassociate Items
+app.delete('/categories/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        // Set cateogry_id to NULL for all items so they don't get deleted with the cateogry
+        await db.query('UPDATE items SET category_id = NULL WHERE category_id = $1', [id]);
+
+        await db.query('DELETE FROM categories WHERE id = $1', [id]);
+
+        res.redirect('/categories');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
+
+// Delete Item
+app.delete('/items/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        await db.query('DELETE FROM items WHERE id = $1', [id]);
+        res.redirect('/items');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Server Error');
+    }
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
