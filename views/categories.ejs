@@ -1,24 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories</title>
-</head>
-<body>
+<% include('layout') %>
+
+<% ('body') %>
     <h1>All Categories</h1>
     <ul>
         <% categories.forEach(category => { %>
             <li>
                 <a href="/categories/<%= category.id %>">
                     <%= category.name %>
-                </a>
-                - <%= category.description %>
-                <form action="/cateogries/<%= cateogry.id %>?_method=DELETE" method="POST" style="display: inline;">
+                </a> - <%= category.description %>
+                <form action="/categories/<%= category.id %>?_method=DELETE" method="POST" style="display: inline;">
                     <button type="submit" onclick="return confirm('Are you sure you want to delete this category?')">Delete</button>
                 </form>
             </li>
         <% }) %>
     </ul>
-</body>
-</html>
+
+    <a href="/categories/new">Add a new category</a>
+<% %>
